@@ -35,10 +35,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <ThemeProvider>
-          <MaterialTheme>
+          <div className="min-h-screen">
             <ThemeToggle />
             {children}
-          </MaterialTheme>
+          </div>
         </ThemeProvider>
       </body>
     </html>
