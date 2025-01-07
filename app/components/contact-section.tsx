@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 
 import { useState } from 'react'
@@ -49,15 +50,24 @@ export function ContactSection() {
   return (
     <section id="contact" className="py-12">
       <div className="text-center mb-12">
-        <Typography variant="h2" className="text-3xl font-bold mb-4" color="blue-gray" {...({} as any)}>
+        <Typography
+          variant="h2"
+          className="text-3xl font-bold mb-4"
+          color="blue-gray"
+          {...({} as any)}
+        >
           Get in Touch
         </Typography>
-        <Typography className="text-muted-foreground max-w-2xl mx-auto" color="blue-gray" {...({} as any)}>
+        <Typography
+          className="text-muted-foreground max-w-2xl mx-auto"
+          color="blue-gray"
+          {...({} as any)}
+        >
           Have a question or want to work together? Drop me a message!
         </Typography>
       </div>
 
-      <div className="grid gap-12 md:grid-cols-2">
+      <div className="grid gap-12 md:grid-cols-2 max-w-4xl mx-auto px-4 sm:px-6">
         {/* Contact Form */}
         <div className="space-y-8">
           <form onSubmit={handleSubmit} className="space-y-6">
