@@ -2,41 +2,129 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Enable smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
 :root {
-  /* Light theme */
-  --background: #ffffff;
-  --foreground: #171717;
-  --primary: #7c3aed;
-  --primary-foreground: #ffffff;
-  --secondary: #f4f0ff;
-  --muted: #f3f4f6;
-  --muted-foreground: #6b7280;
-  --card: #ffffff;
-  --card-foreground: #171717;
-  --border: #e5e7eb;
-  --accent: #f4f0ff;
+  /* Light theme - Material Design colors */
+  --background: #FFFFFF;
+  --foreground: #1A1A1A;
+  --primary: #6750A4;
+  --primary-foreground: #FFFFFF;
+  --secondary: #E8DEF8;
+  --muted: #F6F6F6;
+  --muted-foreground: #625B71;
+  --card: #FFFFFF;
+  --card-foreground: #1A1A1A;
+  --border: #E7E0EC;
+  --accent: #D0BCFF;
+  --accent-secondary: #B69DF8;
+  --success: #56CA00;
+  --warning: #FFB400;
+  --danger: #FF4C51;
+
+  /* Material Design elevation shadows */
+  --shadow-1: 0px 1px 3px rgba(0,0,0,0.12), 0px 1px 2px rgba(0,0,0,0.24);
+  --shadow-2: 0px 3px 6px rgba(0,0,0,0.15), 0px 2px 4px rgba(0,0,0,0.12);
+  --shadow-3: 0px 10px 20px rgba(0,0,0,0.15), 0px 3px 6px rgba(0,0,0,0.10);
+  --shadow-4: 0px 15px 25px rgba(0,0,0,0.15), 0px 5px 10px rgba(0,0,0,0.05);
+  
+  /* Material Design transitions */
+  --transition-standard: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-emphasized: 500ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 [data-theme='dark'] {
-  --background: #0a0a0a;
-  --foreground: #ededed;
-  --primary: #8b5cf6;
-  --primary-foreground: #ffffff;
-  --secondary: #1a1a1a;
-  --muted: #1f2937;
-  --muted-foreground: #9ca3af;
-  --card: #111111;
-  --card-foreground: #ededed;
-  --border: #2d2d2d;
-  --accent: #2d2d2d;
+  /* Dark theme - Material Design colors */
+  --background: #1C1B1F;
+  --foreground: #E6E1E5;
+  --primary: #D0BCFF;
+  --primary-foreground: #381E72;
+  --secondary: #4A4458;
+  --muted: #2B2930;
+  --muted-foreground: #CAC4D0;
+  --card: #211F26;
+  --card-foreground: #E6E1E5;
+  --border: #49454F;
+  --accent: #6750A4;
+  --accent-secondary: #7F67BE;
+  --success: #4CAF50;
+  --warning: #FF9800;
+  --danger: #F44336;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
+  transition: background-color var(--transition-standard), 
+              color var(--transition-standard);
 }
 
-/* Smooth transitions for theme changes */
-body * {
-  transition: background-color 0.3s ease, border-color 0.3s ease;
+/* Only transition specific properties that need theme changes */
+button,
+a,
+input,
+textarea,
+.theme-transition {
+  transition: background-color var(--transition-standard), 
+              color var(--transition-standard),
+              border-color var(--transition-standard),
+              box-shadow var(--transition-standard);
+}
+
+/* Material Design elevation classes */
+.elevation-1 {
+  box-shadow: var(--shadow-1);
+}
+
+.elevation-2 {
+  box-shadow: var(--shadow-2);
+}
+
+.elevation-3 {
+  box-shadow: var(--shadow-3);
+}
+
+.elevation-4 {
+  box-shadow: var(--shadow-4);
+}
+
+/* Hover effects for interactive elements */
+.hover-lift {
+  transition: transform var(--transition-standard);
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn var(--transition-standard) ease-out forwards;
+}
+
+/* Section transitions */
+.section-animate {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity var(--transition-emphasized), 
+              transform var(--transition-emphasized);
+}
+
+.section-animate.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
