@@ -5,7 +5,7 @@ import Image from 'next/image'
 const services = [
   {
     title: 'Microsoft Azure AZ-900',
-    description: 'Microsoft Azure Fundamentals training and certification preparation.',
+    description: 'Microsoft Azure Fundamentals training and certification preparation. Master cloud concepts, core Azure services, security, privacy, pricing, and support. Perfect for beginners looking to start their cloud journey with Microsoft Azure. Learn infrastructure deployment, scaling, and monitoring.',
     price: '$999 USD',
     features: [
       '8 training sessions',
@@ -25,7 +25,7 @@ const services = [
   },
   {
     title: 'Microsoft Artificial Intelligence (AI) Fundamentals',
-    description: 'Microsoft Artificial Intelligence (AI) Fundamentals training and certification preparation.',
+    description: 'Dive into the world of AI with Microsoft AI Fundamentals. Learn machine learning, computer vision, natural language processing, and conversational AI. Understand AI services in Azure and their real-world applications. Ideal for those wanting to explore AI and its business implications.',
     price: '$999 USD',
     features: [
       '8 training sessions',
@@ -45,7 +45,7 @@ const services = [
   },
   {
     title: 'AWS Cloud Practitioner',
-    description: 'AWS Cloud Practitioner training and certification preparation.',
+    description: 'Comprehensive AWS Cloud Practitioner certification preparation. Understand cloud computing concepts, AWS services, security, architecture, pricing, and support. Get hands-on experience with core AWS services and learn best practices for cloud deployment. Perfect for those starting their AWS journey.',
     price: '$999 USD',
     features: [
       '8 training sessions',
@@ -65,7 +65,7 @@ const services = [
   },
   {
     title: 'Python PCEP Certification',
-    description: 'Python programming training and PCEP certification preparation.',
+    description: 'Master Python programming fundamentals with PCEP certification training. Learn control flow, data collections, functions, and object-oriented programming concepts. Gain practical coding experience through hands-on exercises and real-world projects. Learn essential debugging and testing practices for Python applications. Ideal for beginners starting their programming journey.',
     price: '$999 USD',
     features: [
       '8 training sessions',
@@ -85,7 +85,7 @@ const services = [
   },
   {
     title: 'Microsoft Azure AZ-900 Practice Tests',
-    description: 'Intensive practice test sessions with detailed discussions.',
+    description: 'Intensive Azure Fundamentals practice test preparation. Work through comprehensive practice exams covering all AZ-900 domains. Get detailed explanations for each question, learn test-taking strategies, and identify knowledge gaps. Includes performance analytics and targeted improvement recommendations.',
     price: '$999 USD',
     features: [
       '12 practice test sessions',
@@ -105,7 +105,7 @@ const services = [
   },
   {
     title: 'Microsoft Artificial Intelligence (AI) Fundamentals Practice Tests',
-    description: 'Intensive practice test sessions with detailed discussions.',
+    description: 'Comprehensive AI-900 practice test preparation. Work through extensive practice exams covering AI workloads, machine learning, computer vision, and natural language processing. Get in-depth explanations and understand the reasoning behind each answer. Includes performance tracking and focused study recommendations.',
     price: '$999 USD',
     features: [
       '12 practice test sessions',
@@ -139,7 +139,7 @@ export function ServicesSection() {
         {services.map((service, index) => (
           <div
             key={index}
-            className="group relative overflow-hidden rounded-2xl border border-border bg-card p-6 transition-all hover:shadow-lg"
+            className="group relative overflow-hidden rounded-2xl border border-border bg-card p-6 transition-all hover:shadow-lg flex flex-col"
           >
             <div className="flex flex-col items-center space-y-4 mb-6">
               {service.logo && (
@@ -163,28 +163,30 @@ export function ServicesSection() {
                 />
               </div>
             </div>
-            <h3 className="mb-2 text-xl font-semibold">{service.title}</h3>
-            <p className="mb-4 text-muted-foreground">{service.description}</p>
-            <div className="mb-4 text-lg font-semibold text-primary">{service.price}</div>
-            <ul className="space-y-2">
-              {service.features.map((feature, featureIndex) => (
-                <li key={featureIndex} className="flex items-center text-sm">
-                  <svg
-                    className="mr-2 h-4 w-4 text-primary"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  {feature}
-                </li>
-              ))}
-            </ul>
+            <div className="flex-grow flex flex-col">
+              <h3 className="mb-2 text-xl font-semibold min-h-[3rem] flex items-center">{service.title}</h3>
+              <p className="mb-4 text-muted-foreground min-h-[8rem] text-justify">{service.description}</p>
+              <div className="mb-4 text-lg font-semibold text-primary">{service.price}</div>
+              <ul className="space-y-2">
+                {service.features.map((feature, featureIndex) => (
+                  <li key={featureIndex} className="flex items-center text-sm">
+                    <svg
+                      className="mr-2 h-4 w-4 text-primary"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         ))}
       </div>
