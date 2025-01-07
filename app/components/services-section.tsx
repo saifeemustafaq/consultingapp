@@ -12,7 +12,8 @@ const services = [
       '1 LinkedIn Profile Curation session',
       '1 Resume review session',
       '1 Career guidance and support session',
-      'One-on-one personal coaching'
+      'One-on-one personal coaching',
+      'Letter of Recommendation for University Applications'
     ],
     logo: '/images/microsoft-azure-logo.png',
     certBadge: '/images/azure-fundamentals-badge.png',
@@ -31,7 +32,8 @@ const services = [
       '1 LinkedIn Profile Curation session',
       '1 Resume review session',
       '1 Career guidance and support session',
-      'One-on-one personal coaching'
+      'One-on-one personal coaching',
+      'Letter of Recommendation for University Applications'
     ],
     logo: '/images/microsoft-azure-logo.png',
     certBadge: '/images/azure-ai-fundamentals-badge.png',
@@ -50,7 +52,8 @@ const services = [
       '1 LinkedIn Profile Curation session',
       '1 Resume review session',
       '1 Career guidance and support session',
-      'One-on-one personal coaching'
+      'One-on-one personal coaching',
+      'Letter of Recommendation for University Applications'
     ],
     logo: '/images/aws-logo.png',
     certBadge: '/images/aws-cloud-practitioner-badge.png',
@@ -69,7 +72,8 @@ const services = [
       '1 LinkedIn Profile Curation session',
       '1 Resume review session',
       '1 Career guidance and support session',
-      'One-on-one personal coaching'
+      'One-on-one personal coaching',
+      'Letter of Recommendation for University Applications'
     ],
     logo: '/images/python-institute-logo.png',
     certBadge: '/images/pcep-badge.png',
@@ -88,7 +92,8 @@ const services = [
       'Detailed discussion of each test',
       'One-on-one personal coaching',
       'Exam preparation strategies',
-      'Performance analysis'
+      'Performance analysis',
+      'Letter of Recommendation for University Applications'
     ],
     logo: '/images/microsoft-azure-logo.png',
     certBadge: '/images/azure-fundamentals-badge.png',
@@ -107,7 +112,8 @@ const services = [
       'Detailed discussion of each test',
       'One-on-one personal coaching',
       'Exam preparation strategies',
-      'Performance analysis'
+      'Performance analysis',
+      'Letter of Recommendation for University Applications'
     ],
     logo: '/images/microsoft-azure-logo.png',
     certBadge: '/images/azure-ai-fundamentals-badge.png',
@@ -123,9 +129,9 @@ export function ServicesSection() {
   return (
     <section id="services" className="space-y-12">
       <div className="text-center">
-        <h2 className="text-3xl font-bold mb-4">Training Programs</h2>
+        <h2 className="text-3xl font-bold mb-4">Transform Your Career Path</h2>
         <p className="text-muted-foreground max-w-2xl mx-auto">
-          Comprehensive certification training and practice test programs with one-on-one personal coaching
+          Comprehensive certification programs with personalized coaching and university application support
         </p>
       </div>
 
@@ -136,15 +142,17 @@ export function ServicesSection() {
             className="group relative overflow-hidden rounded-2xl border border-border bg-card p-6 transition-all hover:shadow-lg"
           >
             <div className="flex flex-col items-center space-y-4 mb-6">
-              <div className="h-12 flex items-center">
-                <Image
-                  src={service.logo}
-                  alt={`${service.title} logo`}
-                  width={160}
-                  height={48}
-                  className="object-contain max-h-12"
-                />
-              </div>
+              {service.logo && (
+                <div className="h-12 flex items-center">
+                  <Image
+                    src={service.logo}
+                    alt={`${service.title} logo`}
+                    width={160}
+                    height={48}
+                    className="object-contain max-h-12"
+                  />
+                </div>
+              )}
               <div className="h-20 flex items-center">
                 <Image
                   src={service.certBadge}

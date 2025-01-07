@@ -3,7 +3,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "./components/theme-provider";
 import { ThemeToggle } from "./components/theme-toggle";
-import { MaterialTheme } from "./components/material-theme";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Mustafa's Training & Consultation",
-  description: "Professional training and consultation services",
+  title: "Career Excellence Training & Consultation",
+  description: "Elevate Your Career with Expert-Led Training and Personalized Consultation Services",
 };
 
 export const viewport: Viewport = {

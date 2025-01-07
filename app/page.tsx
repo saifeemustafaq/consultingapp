@@ -29,10 +29,10 @@ export default function Home() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <header className="py-12 sm:py-24 text-center fade-in">
         <h1 className="text-4xl sm:text-5xl font-bold mb-4 sm:mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent-secondary">
-          Training & Consultation Services
+          Career Excellence Training & Consultation
         </h1>
         <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
-          Professional training and consultation services to help you achieve your goals
+          Unlock Your Full Potential with Expert-Led Training and Personalized Guidance for Academic & Professional Success
         </p>
       </header>
 
