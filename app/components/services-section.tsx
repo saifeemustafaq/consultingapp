@@ -1,12 +1,34 @@
 'use client'
 
 import Image from 'next/image'
+import { useState } from 'react'
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "./ui/dialog"
+import dynamic from 'next/dynamic'
+
+const PDFViewer = dynamic(() => import('./pdf-viewer'), {
+  ssr: false,
+  loading: () => (
+    <div className="flex items-center justify-center p-8">
+      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+    </div>
+  ),
+})
+
+const syllabusMap = {
+  'az900': '/data/Syllabus_for_AZ900.pdf',
+  'ai900': '/data/Syllabus_for_AI900.pdf',
+  'aws900': '/data/AWS-Certified-Cloud-Practitioner_Exam-Guide.pdf',
+  'python900': '/data/pcep_syllabus.pdf',
+  'az900practice': '/data/Syllabus_for_AZ900.pdf',
+  'ai900practice': '/data/Syllabus_for_AI900.pdf'
+}
 
 const services = [
   {
     title: 'Microsoft Azure AZ-900',
     description: 'Microsoft Azure Fundamentals training and certification preparation. Master cloud concepts, core Azure services, security, privacy, pricing, and support. Perfect for beginners looking to start their cloud journey with Microsoft Azure. Learn infrastructure deployment, scaling, and monitoring.',
     price: '$999 USD',
+    syllabusId: 'az900',
     features: [
       '8 training sessions',
       '1 LinkedIn Profile Curation session',
@@ -27,6 +49,7 @@ const services = [
     title: 'Microsoft Artificial Intelligence (AI) Fundamentals',
     description: 'Dive into the world of AI with Microsoft AI Fundamentals. Learn machine learning, computer vision, natural language processing, and conversational AI. Understand AI services in Azure and their real-world applications. Ideal for those wanting to explore AI and its business implications.',
     price: '$999 USD',
+    syllabusId: 'ai900',
     features: [
       '8 training sessions',
       '1 LinkedIn Profile Curation session',
@@ -47,6 +70,7 @@ const services = [
     title: 'AWS Cloud Practitioner',
     description: 'Comprehensive AWS Cloud Practitioner certification preparation. Understand cloud computing concepts, AWS services, security, architecture, pricing, and support. Get hands-on experience with core AWS services and learn best practices for cloud deployment. Perfect for those starting their AWS journey.',
     price: '$999 USD',
+    syllabusId: 'aws900',
     features: [
       '8 training sessions',
       '1 LinkedIn Profile Curation session',
@@ -67,6 +91,7 @@ const services = [
     title: 'Python PCEP Certification',
     description: 'Master Python programming fundamentals with PCEP certification training. Learn control flow, data collections, functions, and object-oriented programming concepts. Gain practical coding experience through hands-on exercises and real-world projects. Learn essential debugging and testing practices for Python applications. Ideal for beginners starting their programming journey.',
     price: '$999 USD',
+    syllabusId: 'python900',
     features: [
       '8 training sessions',
       '1 LinkedIn Profile Curation session',
@@ -87,6 +112,7 @@ const services = [
     title: 'Microsoft Azure AZ-900 Practice Tests',
     description: 'Intensive Azure Fundamentals practice test preparation. Work through comprehensive practice exams covering all AZ-900 domains. Get detailed explanations for each question, learn test-taking strategies, and identify knowledge gaps. Includes performance analytics and targeted improvement recommendations.',
     price: '$999 USD',
+    syllabusId: 'az900practice',
     features: [
       '12 practice test sessions',
       'Detailed discussion of each test',
@@ -107,6 +133,7 @@ const services = [
     title: 'Microsoft Artificial Intelligence (AI) Fundamentals Practice Tests',
     description: 'Comprehensive AI-900 practice test preparation. Work through extensive practice exams covering AI workloads, machine learning, computer vision, and natural language processing. Get in-depth explanations and understand the reasoning behind each answer. Includes performance tracking and focused study recommendations.',
     price: '$999 USD',
+    syllabusId: 'ai900practice',
     features: [
       '12 practice test sessions',
       'Detailed discussion of each test',
@@ -126,6 +153,8 @@ const services = [
 ]
 
 export function ServicesSection() {
+  const [openSyllabus, setOpenSyllabus] = useState<string | null>(null)
+
   return (
     <section id="services" className="space-y-12">
       <div className="text-center">
@@ -149,7 +178,7 @@ export function ServicesSection() {
                     alt={`${service.title} logo`}
                     width={160}
                     height={48}
-                    className="object-contain max-h-12"
+                    className="object-contain w-auto h-auto max-h-12"
                   />
                 </div>
               )}
@@ -159,37 +188,65 @@ export function ServicesSection() {
                   alt={`${service.title} certification badge`}
                   width={80}
                   height={80}
-                  className="object-contain max-h-20"
+                  className="object-contain w-auto h-auto max-h-20"
                 />
               </div>
             </div>
             <div className="flex-grow flex flex-col">
-              <h3 className="mb-2 text-xl font-semibold min-h-[3rem] flex items-center">{service.title}</h3>
-              <p className="mb-4 text-muted-foreground min-h-[8rem] text-justify">{service.description}</p>
-              <div className="mb-4 text-lg font-semibold text-primary">{service.price}</div>
-              <ul className="space-y-2">
-                {service.features.map((feature, featureIndex) => (
-                  <li key={featureIndex} className="flex items-center text-sm">
-                    <svg
-                      className="mr-2 h-4 w-4 text-primary"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                    {feature}
-                  </li>
-                ))}
-              </ul>
+              <div className="mb-auto">
+                <h3 className="mb-2 text-xl font-semibold min-h-[3rem] flex items-center">{service.title}</h3>
+                <p className="mb-4 text-muted-foreground h-[12rem] text-justify">{service.description}</p>
+              </div>
+              <div className="border-t border-border pt-4 mb-4">
+                <div className="text-lg font-semibold text-primary text-center">{service.price}</div>
+              </div>
+              <div className="border-t border-border pt-4">
+                <ul className="space-y-2 mb-4">
+                  {service.features.map((feature, featureIndex) => (
+                    <li key={featureIndex} className="flex items-center text-sm">
+                      <svg
+                        className="mr-2 h-4 w-4 text-primary"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+                <button
+                  onClick={() => setOpenSyllabus(service.syllabusId)}
+                  className="w-full py-2 px-4 bg-primary hover:bg-primary/80 text-primary-foreground rounded-lg transition-all duration-200 transform hover:scale-[1.02] active:scale-[0.98] hover:shadow-md"
+                >
+                  View Syllabus
+                </button>
+              </div>
             </div>
           </div>
         ))}
       </div>
+
+      <Dialog open={!!openSyllabus} onOpenChange={() => setOpenSyllabus(null)}>
+        <DialogContent className="max-w-4xl h-[90vh] p-6">
+          <DialogHeader className="mb-4">
+            <DialogTitle>Course Syllabus</DialogTitle>
+            <DialogDescription>
+              View the detailed course syllabus and curriculum
+            </DialogDescription>
+          </DialogHeader>
+          <div className="flex-1 overflow-hidden">
+            {openSyllabus && syllabusMap[openSyllabus as keyof typeof syllabusMap] && (
+              <PDFViewer pdfUrl={syllabusMap[openSyllabus as keyof typeof syllabusMap]} />
+            )}
+          </div>
+        </DialogContent>
+      </Dialog>
     </section>
   )
 } 
