@@ -6,6 +6,8 @@ import { ServicesSection } from './components/services-section'
 import { MetricsSection } from './components/metrics-section'
 import { CredentialsSection } from './components/credentials-section'
 import { ContactSection } from './components/contact-section'
+import { ReferralBonusSection } from './components/referral-bonus-section'
+import { BenefitsSection } from './components/benefits-section'
 
 export default function Home() {
   // Add intersection observer for section animations
@@ -38,7 +40,15 @@ export default function Home() {
 
       <main className="space-y-40 pb-40">
         <section className="section-animate">
+          <BenefitsSection />
+        </section>
+
+        <section className="section-animate">
           <ServicesSection />
+        </section>
+        
+        <section className="section-animate">
+          <ReferralBonusSection />
         </section>
         
         <section className="section-animate">

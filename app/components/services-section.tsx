@@ -110,12 +110,13 @@ const services = [
   },
   {
     title: 'Microsoft Azure AZ-900 Practice Tests',
-    description: 'Intensive Azure Fundamentals practice test preparation. Work through comprehensive practice exams covering all AZ-900 domains. Get detailed explanations for each question, learn test-taking strategies, and identify knowledge gaps. Includes performance analytics and targeted improvement recommendations.',
+    description: 'Intensive Azure Fundamentals practice test preparation. Get access to six comprehensive practice exams covering all AZ-900 domains, followed by detailed discussion sessions for each test. After every exam, participate in a focused session analyzing incorrect answers and areas for improvement. Get detailed explanations for each question, learn test-taking strategies, and identify knowledge gaps. Includes performance analytics and targeted improvement recommendations.',
     price: '$999 USD',
     syllabusId: 'az900practice',
     features: [
-      '12 practice test sessions',
-      'Detailed discussion of each test',
+      '6 comprehensive practice exams',
+      '6 post-exam review sessions',
+      'Detailed discussion of incorrect answers',
       'One-on-one personal coaching',
       'Exam preparation strategies',
       'Performance analysis',
@@ -131,12 +132,13 @@ const services = [
   },
   {
     title: 'Microsoft Artificial Intelligence (AI) Fundamentals Practice Tests',
-    description: 'Comprehensive AI-900 practice test preparation. Work through extensive practice exams covering AI workloads, machine learning, computer vision, and natural language processing. Get in-depth explanations and understand the reasoning behind each answer. Includes performance tracking and focused study recommendations.',
+    description: 'Comprehensive AI-900 practice test preparation. Access six extensive practice exams covering AI workloads, machine learning, computer vision, and natural language processing. Each exam is followed by a dedicated review session focusing on your incorrect answers and areas needing improvement. Get in-depth explanations and understand the reasoning behind each answer. Includes performance tracking and focused study recommendations.',
     price: '$999 USD',
     syllabusId: 'ai900practice',
     features: [
-      '12 practice test sessions',
-      'Detailed discussion of each test',
+      '6 comprehensive practice exams',
+      '6 post-exam review sessions',
+      'Detailed discussion of incorrect answers',
       'One-on-one personal coaching',
       'Exam preparation strategies',
       'Performance analysis',
@@ -164,13 +166,13 @@ export function ServicesSection() {
         </p>
       </div>
 
-      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-8 md:grid-cols-2">
         {services.map((service, index) => (
           <div
             key={index}
             className="group relative overflow-hidden rounded-2xl border border-border bg-card p-6 transition-all hover:shadow-lg flex flex-col"
           >
-            <div className="flex flex-col items-center space-y-4 mb-6">
+            <div className="flex justify-center items-center gap-8 mb-6">
               {service.logo && (
                 <div className="h-12 flex items-center">
                   <Image
