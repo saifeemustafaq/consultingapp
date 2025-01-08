@@ -12,7 +12,6 @@ interface PDFViewerProps {
 
 export default function PDFViewer({ pdfUrl }: PDFViewerProps) {
   const [numPages, setNumPages] = useState<number | null>(null)
-  const [pageNumber, setPageNumber] = useState(1)
   const [windowWidth, setWindowWidth] = useState(800)
   const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
@@ -30,7 +29,6 @@ export default function PDFViewer({ pdfUrl }: PDFViewerProps) {
 
   function onDocumentLoadSuccess({ numPages }: { numPages: number }) {
     setNumPages(numPages)
-    setPageNumber(1)
     setLoading(false)
     setError(null)
   }
@@ -39,10 +37,6 @@ export default function PDFViewer({ pdfUrl }: PDFViewerProps) {
     console.error('PDF load error:', error)
     setError('Failed to load PDF. Please try again later.')
     setLoading(false)
-  }
-
-  function changePage(offset: number) {
-    setPageNumber(prevPageNumber => Math.min(Math.max(1, prevPageNumber + offset), numPages || 1))
   }
 
   const LoadingSpinner = () => (
@@ -77,40 +71,21 @@ export default function PDFViewer({ pdfUrl }: PDFViewerProps) {
           {loading ? (
             <LoadingSpinner />
           ) : (
-            <Page 
-              pageNumber={pageNumber} 
-              className="max-w-full shadow-lg mb-4"
-              width={Math.min(windowWidth * 0.8, 800)}
-              loading={<LoadingSpinner />}
-              error={null}
-              renderAnnotationLayer={false}
-              renderTextLayer={false}
-            />
+            Array.from(new Array(numPages), (_, index) => (
+              <Page
+                key={`page_${index + 1}`}
+                pageNumber={index + 1}
+                className="max-w-full shadow-lg mb-4"
+                width={Math.min(windowWidth * 0.8, 800)}
+                loading={<LoadingSpinner />}
+                error={null}
+                renderAnnotationLayer={false}
+                renderTextLayer={false}
+              />
+            ))
           )}
         </Document>
       </div>
-      
-      {!loading && !error && (
-        <div className="flex items-center gap-4 mt-4 p-2 bg-background rounded-lg shadow-sm">
-          <button
-            onClick={() => changePage(-1)}
-            disabled={pageNumber <= 1}
-            className="px-4 py-2 bg-primary/10 hover:bg-primary/20 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-          >
-            Previous
-          </button>
-          <p className="text-sm">
-            Page {pageNumber} of {numPages}
-          </p>
-          <button
-            onClick={() => changePage(1)}
-            disabled={pageNumber >= (numPages || 1)}
-            className="px-4 py-2 bg-primary/10 hover:bg-primary/20 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-          >
-            Next
-          </button>
-        </div>
-      )}
     </div>
   )
 } 
